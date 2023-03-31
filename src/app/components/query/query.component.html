@@ -1,10 +1,17 @@
-<input (keyup)="onKey($event)"> 
-<button (click)="queryJoke(queryValue)">Search Joke</button>
-
+<form class="gls-form-stacked">
+    <div class="gls-margin">
+        <label class="gls-form-label" for="form-stacked-text">Search Chuck Noris Joke</label>
+        <div class="gls-form-controls">
+            <input (keyup)="onKey($event)" class="gls-input" id="form-stacked-text" type="text" placeholder="Enter keyword...">
+        </div>
+    </div>
+</form>
+<button (click)="queryJoke(queryValue)" class="gls-button gls-button-primary">List Jokes</button>
 
 <ng-container *ngIf="(showJokes && jokes.length > 0) else noResults ">
     <h2>Result</h2>
-    <ul>
+    <div *ngIf="loading" gls-spinner="ratio: 3"></div>
+    <ul *ngIf="!loading">
         <li *ngFor="let joke of jokes">{{ joke.value }}</li>
     </ul>
 </ng-container>

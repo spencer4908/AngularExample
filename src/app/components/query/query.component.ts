@@ -10,6 +10,7 @@ export class QueryComponent {
   public jokes: Joke[] = [];
   public queryValue: string = "";
   public showJokes: boolean = false;
+  public loading = false;
 
   constructor(public jokesService: ChuckNorrisJokesService) {}
 
@@ -18,10 +19,12 @@ export class QueryComponent {
   }
 
   queryJoke (query: string) {
+    this.loading = true;
+    
     this.jokesService.queryJokes(query).subscribe((data: any) => {
       this.jokes = data.result;
+      this.loading = false;
+      this.showJokes = true;
     });
-
-    this.showJokes = true;
   }
 }
