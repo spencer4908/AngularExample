@@ -1,0 +1,12 @@
+<div id="jokeDisplay">
+  <h2>Joke List</h2>
+  @for (joke of jokes; track joke.id) {
+    <div class="joke">
+      <p>{{ joke.value }}</p>
+      <div class="categories">{{ joke.categories.join(', ') }}</div>
+    </div>
+  }
+  @empty {
+    <p>No jokes to display.</p>
+  }
+</div>

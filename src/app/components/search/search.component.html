@@ -1,0 +1,27 @@
+<section>
+  <h1>Chuck Norris Jokes</h1>
+
+  <!-- Random Joke Button -->
+  <button (click)="getRandomJoke()">Get Random Joke</button>
+
+  <!-- Category Selection -->
+  <label for="categorySelect">Select Category:</label>
+  <select #categorySelect required [(ngModel)]="selectedCategory" name="category">
+    <option value="" disabled>Select a category</option>
+    @for (category of categories; track category) {
+      <option [value]="category">{{ category }}</option>
+    }
+  </select>
+  <button (click)="getJokesByCategory(selectedCategory)">Get Joke by Category</button>
+
+  <!-- Search Joke -->
+  <label for="searchQuery">Search Jokes:</label>
+  <input type="text" [(ngModel)]="query" placeholder="Enter search query">
+  <button (click)="getJokesByQuery(query)">Search Joke</button>
+</section>
+
+@if (jokes.length > 0) {
+  <section>
+    <app-jokes-list [jokes]="jokes" />
+  </section>
+}
